@@ -3,12 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2023 at 01:22 PM
+-- Generation Time: Mar 15, 2023 at 08:09 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -34,7 +33,7 @@ CREATE TABLE `cars` (
   `fuel_id` int NOT NULL,
   `registration_year` int NOT NULL,
   `source_country_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lv_0900_as_cs;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -44,8 +43,8 @@ CREATE TABLE `cars` (
 
 CREATE TABLE `colors` (
   `id` int NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_lv_0900_as_cs NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lv_0900_as_cs;
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,8 +54,8 @@ CREATE TABLE `colors` (
 
 CREATE TABLE `countries` (
   `id` int NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_lv_0900_as_cs NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lv_0900_as_cs;
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -66,8 +65,8 @@ CREATE TABLE `countries` (
 
 CREATE TABLE `fuels` (
   `id` int NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_lv_0900_as_cs NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lv_0900_as_cs;
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -77,8 +76,8 @@ CREATE TABLE `fuels` (
 
 CREATE TABLE `manufacturers` (
   `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,8 +88,8 @@ CREATE TABLE `manufacturers` (
 CREATE TABLE `models` (
   `id` int NOT NULL,
   `manufacturer_id` int NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_lv_0900_as_cs NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lv_0900_as_cs;
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -196,7 +195,6 @@ ALTER TABLE `cars`
 --
 ALTER TABLE `models`
   ADD CONSTRAINT `model_manufacturer_id` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
