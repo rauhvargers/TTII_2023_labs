@@ -1,5 +1,5 @@
 # Instruction for Lab3
-The purpose of this Lab assignment is to provide a hands-on experience in base Laravel functionality. It will guide you through basic steps of creating a website, adding routes, controllers, views and models to the application. You will also implement CRUD functionality of a model.
+The purpose of this Lab assignment is to provide a hands-on experience in developing basic Laravel functionality. It will guide you through basic steps of creating a website, adding routes, controllers, views and models to the application. You will also implement CRUD functionality of a model.
 
 The sample application will be hosted in address `http://www.lab3.dev`.
 
@@ -26,7 +26,7 @@ It should output the actual version number, not an error message. If it is not t
 In this step, you have to create a web site that runs locally on your computer and can be accessed using local web browser at http://www.lab3.dev.
 
 ### Wamp.Net configuration
-- launch Wamp.Net Manager
+- launch [Wamp.Net](https://wamp.net/) Manager
 - make sure that 
   - PHP 8.1.9. is installed and running
   - Nginx web server is installed and running
