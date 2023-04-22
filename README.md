@@ -383,6 +383,18 @@ public function destroy(string $id)
 In the migration it was set to `cascadeOnDelete()` which means that deleting a country will immediately delete all the manufacturers in that country (and deleting a manufacturer will delete all of its car models).
 
 To cause the `destroy()` operation, an action button is needed.
+
+Update the web.php file by adding Routes to GET and DELETE requests.
+
+The first route is a GET request that maps to the index method of the ManufacturerController class, which retrieves a list of manufacturers.
+
+The second route is a DELETE request that maps to the destroy method of the CountryController class, which deletes a specific country based on its ID.
+
+```php
+Route::get('/manufacturers', [App\Http\Controllers\ManufacturerController::class, 'index'])->name('manufacturers.index'); 
+Route::delete('/countries/{id}', [App\Http\Controllers\CountryController::class, 'destroy'])->name('countries.destroy'); 
+```
+
 Update the `countries.blade.php` file by adding a "Delete" button in all rows:
 
 ```php
@@ -399,18 +411,17 @@ Update the `countries.blade.php` file by adding a "Delete" button in all rows:
 <body>
     <h1>Pick a country you like</h1>
     @if (count($countries) == 0)
-        <p color='red'> There are no records in the database!</p>
+        <p style="color: red;"> There are no records in the database!</p>
     @else
         <ul>
 
             @foreach ($countries as $country)
                 <li>
                     {{ $country->code }} - 
-                    
-                    <a href="{{ action([App\Http\Controllers\ManufacturerController::class, 'index'],['countryslug' => $country->code])}}">{{ $country->name }}</a>
+                    <a href="{{ route('manufacturers.index', ['countryslug' => $country->code]) }}">{{ $country->name }}</a>
 
                     <form method="POST"
-                        action={{ action([App\Http\Controllers\CountryController::class, 'destroy'], $country->id) }}>
+                        action="{{ route('countries.destroy', $country->id) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" value="delete">Delete</button>
@@ -447,7 +458,7 @@ Route::resource('manufacturer', ManufacturerController::class, ['except' => ['in
 Route::get('{countryslug}/manufacturer', [ManufacturerController::class, 'index']);
 ```
 
-Change the beginning of `Manufacturers.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file to create the specific index method
+Change the beginning of `ManufacturerController.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file to create the specific index method
 ```php
 <?php
 
@@ -489,7 +500,7 @@ Create a view file `manufacturers.blade.php` in (*Laravel installation folder*/r
 <body>
     <h1>Manufacturers in {{$country->name}}</h1>
     @if (count($manufacturers) == 0)
-        <p color='red'>There are no records in the database!</p>
+        <p style="color: red;"> There are no records in the database!</p>
     @else
         <ul>
 
@@ -509,7 +520,7 @@ Try to access the address http://www.lab3.dev/de/manufacturer.
 It should look up the "de" fragment and recognize it as Germany, then display all manufacturers in that country.
 
 ### Adding a new manufacturer
-When the user visits the page of manufacturers in particular country, she might want to add yet another manufacturer to that list.
+When the users visit the page of manufacturers in particular country, they might want to add yet another manufacturer to that list.
 For instance, to register a new manufacturer in Germany, the URL address of the form might be http://www.lab3.dev/de/manufacturer/create/
 
 To achieve that, first edit the routes file (*Laravel installation folder*/routes/web.php) and add another routing rule:
@@ -519,7 +530,7 @@ Route::get('{countryslug}/manufacturer/create', [ManufacturerController::class, 
 ```
 
 
-Change the method `create()` in `Manufacturers.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file:
+Change the method `create()` in `ManufacturerController.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file:
 
 ```php
 public function create($countryslug)
@@ -556,7 +567,7 @@ Create a view file `manufacturer_new.blade.php` in *Laravel installation folder*
 ```
 You can now test that the new input form can be open at https://www.lab3.dev/de/manufacturer/create (however, it does not work yet).
 
-To actually save the new manufacturer data in database, edit the `store()` method of `Manufacturers.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file:
+To actually save the new manufacturer data in database, edit the `store()` method of `ManufacturerController.php` (found in *Laravel installation folder*/app/HTTP/controllers/) controller file:
 
 ```php
  public function store(Request $request)
@@ -588,10 +599,9 @@ To create a link to the form where a new manufacturer can be registered, edit th
 <body>
     <h1>Manufacturers in {{$country->name}}</h1>
     @if (count($manufacturers) == 0)
-        <p color='red'>There are no records in the database!</p>
+        <p style="color: red;"> There are no records in the database!</p>
     @else
         <ul>
-
             @foreach ($manufacturers as $manufacturer)
                 <li>
                    {{ $manufacturer->name }}
