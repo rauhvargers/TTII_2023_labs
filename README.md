@@ -5,7 +5,7 @@ This is a lab assignment #4 in "Web Technologies II", year 2023.
 Lab 4 extends the functionality developed in Lab 3 by improving the usability of code. To begin Lab 4, you need a working https://www.lab3.dev site:
 
 - If you completed the [Lab 3 assignment](https://github.com/rauhvargers/TTII_2023_labs/blob/Lab3/README.md), continue with the code you already developed.
-- If you did not do (or did not finish) the assignment, you can use [the sample code developed by the lecturer](https://github.com/rauhvargers/TTII_2023_labs/tree/Lab3_result).
+- If you did not do (or did not finish) the assignment, you can use [the sample code developed by the lecturer](https://github.com/rauhvargers/TTII_2023_labs/tree/Lab3_result) (don' t forget to create the `.env`  file and run the `php artisan migrate --fresh --seed` command).
 
 ## Task #1: Exdending the data model
 The data structure defined in Lab 3 is Countries < Manufacturers < Carmodels ![Original data structure](lab3.png) with only a few attributes.
@@ -28,6 +28,7 @@ Edit the generated migration file to extend the models by adding the following a
 - production_started: integer - *stores the year, when model was first in production*
 - min_price: decimal (8,2) - *minimal price in Euros*
 
+Update the seeder classes to take care of the new fields.
 
 ## Task #2: handling the new attributes
  Update the app to wok with the new data:
