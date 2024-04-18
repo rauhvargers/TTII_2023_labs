@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> ## Still accessing this lab assignment in 2024?
+> Most likely you are looking for [this page: https://github.com/rauhvargers/TTII_2024_labs/blob/Lab3/readme.md](https://github.com/rauhvargers/TTII_2024_labs/blob/Lab3/readme.md)
+
 # Instruction for Lab3
 The purpose of this Lab assignment is to provide a hands-on experience in developing basic Laravel functionality. It will guide you through basic steps of creating a website, adding routes, controllers, views and models to the application. You will also implement CRUD functionality of a model.
 
